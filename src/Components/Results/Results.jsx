@@ -35,7 +35,7 @@ const Results = () => {
 
 
   },[debounced_search,search])
-
+console.log(results);
   return (
     <div className='xl:grid xl:grid-cols-3 lg:grid lg:grid-cols-2 md:flex md:flex-col md:items-center  p-3'>
       {loading === true ? (<div className="flex h-screen w-screen  justify-center items-center">
