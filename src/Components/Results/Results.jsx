@@ -1,15 +1,14 @@
-import React, { useEffect, useState,useCallback } from 'react'
+import React, { useEffect, useState,useCallback, useMemo } from 'react'
 import { debounce } from 'lodash';
 import { useSearchParams } from 'react-router-dom'
 import axios from '../../api/baseUrl'
 import Card from './Card/Card';
 const Results = () => {
-  const [search] = useSearchParams();
+  const [search, setSearch] = useSearchParams();
   const [results, setResults] = useState([])
   const [loading, setloading] = useState(false)
   const helper_fun = async (value) => {
     try {
-      console.log("called");
         const response = await axios.get('/', {
           params: {
             q: value,
@@ -39,14 +38,14 @@ const Results = () => {
 
   return (
     <div className='xl:grid xl:grid-cols-3 lg:grid lg:grid-cols-2 md:flex md:flex-col md:items-center  p-3'>
-      {loading === true ? (<div className="flex h-screen  justify-center items-center">
+      {loading === true ? (<div className="flex h-screen w-screen  justify-center items-center">
         <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>) : <>
-        {results.length!==0?(results.map(({ heading, tags, text, video }, index) => (
+        {results.map(({ heading, tags, text, video }, index) => (
           <Card key={heading} heading={heading} tags={tags} text={text} video={video} />
-        ))):null}
+        ))}
       </>}
 
     </div>
