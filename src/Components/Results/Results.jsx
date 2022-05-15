@@ -18,7 +18,7 @@ const Results = () => {
 
        setResults(response.data.results)
 
-    // }
+   
    }
     catch (error) {
      setResults([])
@@ -43,9 +43,9 @@ const Results = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>) : <>
-        {results.map(({ heading, tags, text, video }, index) => (
+        {results!==undefined?(results.map(({ heading, tags, text, video }, index) => (
           <Card key={heading} heading={heading} tags={tags} text={text} video={video} />
-        ))}
+        ))):null}
       </>}
 
     </div>
